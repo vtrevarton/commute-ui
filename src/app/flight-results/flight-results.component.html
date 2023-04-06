@@ -1,0 +1,35 @@
+<app-navbar title="Flight Results" backRoute=""></app-navbar>
+<div class="p-2">
+
+	<div class="flex flex-row justify-between items-center">
+		<div>
+			<span class="text-gray-600 font-medium">{{ departureArpt }} - {{ arrivalArpt }} </span>	
+			<span class="text-gray-600 font-light">{{ date | date:'shortDate' }}</span>
+		</div>		
+		<app-toggle-button label="Show Departed" [selected]="showDeparted" (toggled)="onShowDepartedToggled($event)"></app-toggle-button>
+	</div>
+
+	<!-- <div class="flex flex-row justify-between items-center">
+		<button>Book A1/A3/A12</button>
+	</div> -->
+
+	<ng-container *ngIf="nonstopFlights.length > 0">
+		<h3 class="text-lg font-light text-gray-700 text-left mt-2">Nonstop</h3>	
+		<div *ngFor="let nonstopFlight of nonstopFlights">
+			<app-flight-summary *ngIf="showDeparted || !showDeparted && nonstopFlight.status !== 'departed'" [flightData]="nonstopFlight"></app-flight-summary>
+		</div>
+	</ng-container>
+
+	<ng-container *ngIf="connectingFlights.length > 0">
+		<h3 class="text-lg font-light text-gray-700 text-left mt-4">Connecting</h3>	
+		<div *ngFor="let connectingFlight of connectingFlights" >
+			<div 
+				*ngIf="showDeparted || !showDeparted && connectingFlight.flightA.status !== 'departed'"
+				class="border-l-2 border-gray-400 pl-1 mb-6">
+				<app-flight-summary [flightData]="connectingFlight.flightA"></app-flight-summary>
+				<app-flight-summary [flightData]="connectingFlight.flightB"></app-flight-summary>
+			</div>
+		</div>
+	</ng-container>
+
+</div>

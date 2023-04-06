@@ -1,0 +1,5 @@
+<app-navbar title="Commute" backRoute=""></app-navbar>
+<div class="flex flex-col p-3 space-y-4 mx-auto">
+	<app-favorites (selected)="onFavoriteClicked($event)"></app-favorites>
+	<app-search-flights [from]="from" [to]="to"></app-search-flights>
+</div>

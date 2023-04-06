@@ -1,0 +1,50 @@
+<form class="bg-white shadow-md rounded-lg mx-auto p-6 pt-4">
+	<div class="flex flex-row items-center space-x-2 mb-4">
+		<div class="text-gray-400">
+			<fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+		</div>
+		<h3 class="text-lg text-gray-600">Flight Search</h3>
+	</div>
+	<div class="mb-4 flex flex-row justify-between">
+		<input
+			[(ngModel)]="from"
+			name="departure"
+			type="text" 
+			class="shadow border border-gray-300 rounded w-full py-2 px-3 mr-1 text-gray-600 leading-tight focus:outline-none focus:shadow-outline uppercase" 
+			placeholder="From">
+		<div class="flex flex-col justify-center mx-4">
+			<button (click)="onSwapClick()" class="text-gray-600">
+				<fa-icon [icon]="faRightLeft"></fa-icon>
+			</button>
+		</div>
+		<input
+			[(ngModel)]="to"
+			name="arrival" 
+			type="text" 
+			class="shadow border border-gray-300 rounded w-full py-2 px-3 ml-1 text-gray-600 leading-tight focus:outline-none focus:shadow-outline uppercase" 
+			placeholder="To">
+	</div>
+		<input
+			[(ngModel)]="date"
+			name="date"
+			type="text"
+			id="date-picker" 
+			class="shadow border border-gray-300 rounded w-full py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline" 
+			placeholder="Select Date">
+	<div class="flex flex-row justify-around items-center my-4">
+		<app-toggle-button label="Nonstop" [selected]="nonstopSelected" (toggled)="onNonstopToggled($event)"></app-toggle-button>
+		<app-toggle-button label="Connecting" [selected]="connectingSelected" (toggled)="onConnectingToggled($event)"></app-toggle-button>
+		<!-- <button class="border border-gray-700 rounded-full px-3 py-2 text-gray-700 hover:border-gray-500 hover:text-gray-500">
+			Nonstop
+		</button>
+		<button class="border border-gray-700 rounded-full px-3 py-2 text-gray-700 hover:border-gray-500 hover:text-gray-500">Connecting</button> -->
+	</div>
+	<hr>
+	<div>
+		<button
+			(click)="onFindFlightsClick()" 
+			class="border bg-slate-500 rounded-md mt-4 px-3 py-2 text-white shadow-md w-full font-medium hover:text-gray-100 hover:bg-slate-400">
+			Find Flights
+		</button>
+	</div>
+</form>
